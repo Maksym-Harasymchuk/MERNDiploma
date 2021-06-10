@@ -114,7 +114,6 @@ export const productDetailsSlice = createSlice({
       state.deleteProduct.loading = false;
     },
     [createProduct.fulfilled]: (state, { meta, payload }) => {
-      console.log(payload);
       state.createdProduct.product = payload.data;
       state.createdProduct.success = true;
       state.createdProduct.loading = false;

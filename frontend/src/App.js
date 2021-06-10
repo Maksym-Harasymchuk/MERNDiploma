@@ -10,7 +10,12 @@ import Item from './components/items/Item';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import './App.css';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from 'react-router-dom';
 import HomeScreen from './components/HomeScreen';
 import ItemScreen from './components/ItemScreen';
 import CartScreen from './components/CartScreen';
@@ -64,18 +69,18 @@ function App() {
           <Grid item xs={false} md={2} />
 
           <Grid item xs={12} md={8} container>
-            <Route path='/' component={HomeScreen} exact />
-            {/* <Route path='/lizka' component={Item} />
-            <Route path='/krisla' component={Item} /> */}
-            <Route path='/products/:id' component={ItemScreen} />
-            <Route path='/cart/:id?' component={CartScreen} />
-            <Route path='/login' component={LoginScreen} />
-            <Route path='/register' component={RegisterScreen} />
-            <Route path='/profile' component={UserScreen} />
-            <Route path='/edit/users' component={UsersScreen} />
-            <Route path='/edit/products' component={ProductsScreen} />
-            <Route path='/shipping' component={CustomizedSteppers} />
-            <Route path='*' render={() => <Redirect to='/' />} />
+            <Switch>
+              <Route path='/' component={HomeScreen} exact />
+              <Route path='/products/:id' component={ItemScreen} />
+              <Route path='/cart/:id?' component={CartScreen} />
+              <Route path='/login' component={LoginScreen} />
+              <Route path='/register' component={RegisterScreen} />
+              <Route path='/profile' component={UserScreen} />
+              <Route path='/edit/users' component={UsersScreen} />
+              <Route path='/edit/products' component={ProductsScreen} />
+              <Route path='/shipping' component={CustomizedSteppers} />
+              <Redirect to='/' />
+            </Switch>
           </Grid>
 
           <Grid item xs={false} md={2} />

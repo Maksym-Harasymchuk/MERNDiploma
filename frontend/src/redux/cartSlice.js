@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const addToCart = createAsyncThunk('cart/add', async ({ productId, qty }) => {
-  // console.log('CART: ', productId, qty);
   try {
     let {
       data: { product, name, image, price, conuntInStock },
@@ -11,7 +10,6 @@ const addToCart = createAsyncThunk('cart/add', async ({ productId, qty }) => {
     price *= qty;
     return { product, name, image, price, conuntInStock, qty, productId };
   } catch (err) {
-    console.error(err);
     return err;
   }
 });
@@ -33,8 +31,6 @@ export const cartSlice = createSlice({
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
     },
     saveShippingAddress(state, { payload }) {
-      console.log('address: ', payload);
-
       state.address = payload;
       localStorage.setItem('shippingAddress', JSON.stringify(payload));
     },

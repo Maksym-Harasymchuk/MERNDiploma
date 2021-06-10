@@ -4,7 +4,6 @@ import axios from 'axios';
 const createOrder = createAsyncThunk(
   'order/make',
   async (order, { dispatch, rejectWithValue, getState }) => {
-    console.log('order: ', order);
     try {
       const {
         userLogin: { userInfo },
@@ -21,7 +20,6 @@ const createOrder = createAsyncThunk(
 
       return data;
     } catch (err) {
-      console.error('ERRROR: ', err);
       return err;
     }
   }
@@ -43,10 +41,8 @@ const getMyOrders = createAsyncThunk(
       };
 
       const { data } = await axios.get(`/api/orders/myorders`, config);
-      console.log('FROM SLICE: ', data);
       return data;
     } catch (err) {
-      console.error('ERRROR: ', err);
       return err;
     }
   }
@@ -73,7 +69,6 @@ export const orderSlice = createSlice({
     },
     [getMyOrders.fulfilled]: (state, { meta, payload }) => {
       state.myOrders = payload;
-      console.log('Reducer', payload);
       state.loading = 'pending';
     },
     [getMyOrders.pending]: (state, { meta }) => {

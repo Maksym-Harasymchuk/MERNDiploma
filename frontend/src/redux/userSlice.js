@@ -45,17 +45,12 @@ const register = createAsyncThunk(
         { name, email, password },
         config
       );
-      console.log('data:', data);
       return data;
     } catch (err) {
-      console.log('response:', err.responce);
       const payloadError =
         err.response && err.response.data.message
           ? err.response.data.message
           : err.message;
-      console.log({ err });
-      console.log('response:', err.response.data.message);
-
       return rejectWithValue(payloadError);
     }
   }
@@ -68,8 +63,6 @@ const update = createAsyncThunk(
       const {
         userLogin: { userInfo },
       } = getState();
-
-      console.log('called:', userInfo);
       const config = {
         headers: {
           'Content-Type': 'application/json',
@@ -79,17 +72,12 @@ const update = createAsyncThunk(
 
       const { data } = await axios.put(`/api/users/profile`, user, config);
 
-      console.log('data:', data);
       return data;
     } catch (err) {
-      console.log('response:', err.responce);
       const payloadError =
         err.response && err.response.data.message
           ? err.response.data.message
           : err.message;
-      console.log({ err });
-      console.log('response:', err.response.data.message);
-
       return rejectWithValue(payloadError);
     }
   }
@@ -125,7 +113,6 @@ const list = createAsyncThunk(
 const deleteUser = createAsyncThunk(
   'user/delete',
   async (id, { getState, rejectWithValue }) => {
-    console.log(id);
     try {
       const {
         userLogin: { userInfo },
@@ -212,7 +199,6 @@ export const userSlice = createSlice({
     },
     [list.rejected]: (state, { meta, payload, error }) => {
       state.error = payload;
-      console.log('rejected', payload);
       state.loading = false;
     },
     [deleteUser.fulfilled]: (state, { meta, payload }) => {

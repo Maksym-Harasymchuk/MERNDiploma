@@ -6,7 +6,6 @@ const getSingleProduct = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(`/api/products/${id}`);
-      // console.log('thunk', data);
       return data;
     } catch (err) {
       return rejectWithValue([], err);
