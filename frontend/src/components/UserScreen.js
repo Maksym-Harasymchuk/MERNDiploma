@@ -149,6 +149,7 @@ const UserScreen = ({ history, match }) => {
                     type='submit'
                     variant='contained'
                     color='primary'
+                    style={{ marginTop: '15px' }}
                     className={classes.submit}
                   >
                     {loading ? <CircularProgress /> : 'Оновити дані'}

@@ -31,8 +31,6 @@ const UserScreen = ({ history }) => {
     userInfo,
     loading = true,
   } = useSelector((state) => state.userLogin);
-  // const { list, loading } = userList;
-  console.log(userList);
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
@@ -40,10 +38,9 @@ const UserScreen = ({ history }) => {
     } else {
       history.push('/login');
     }
-  }, [dispatch, history, userInfo]);
+  }, [dispatch, history, userInfo, userList]);
 
   const deleteHandler = (id) => {
-    console.log(id);
     if (window.confirm('Are you sure')) {
       dispatch(deleteUser(id));
     }

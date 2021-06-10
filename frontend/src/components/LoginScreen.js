@@ -19,7 +19,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-// import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -70,12 +69,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const theme = createMuiTheme({
-  // palette: {
-  //   primary: { 500: '#337ab7' },
-  // },
-});
-
 export default function LoginScreen({ location, history }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -114,7 +107,7 @@ export default function LoginScreen({ location, history }) {
           <CssBaseline />
           <div className={classes.paper}>
             <form className={classes.form} onSubmit={submitHandler}>
-              <ThemeProvider theme={theme}>
+              <ThemeProvider>
                 <TextField
                   variant='outlined'
                   margin='normal'
@@ -135,12 +128,6 @@ export default function LoginScreen({ location, history }) {
                   id='password'
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <Box mt={2}>
-                  <FormControlLabel
-                    control={<Checkbox value='remember' color='primary' />}
-                    label='Remember me'
-                  />
-                </Box>
               </ThemeProvider>
               <Box style={{ textAlign: 'center' }}>
                 <Button
@@ -153,33 +140,14 @@ export default function LoginScreen({ location, history }) {
                 </Button>
               </Box>
               <Box mt={2}>
-                <Grid container>
-                  <Grid item xs>
-                    {/* <Link
-                      href='#'
-                      variant='body2'
-                      className={classes.footerLinks}
-                    > */}
-                    <Link
-                      to={
-                        redirect
-                          ? `/register?redirect=${redirect}`
-                          : '/register'
-                      }
-                    >
-                      Зареєструватися
-                    </Link>
-                    {/* </Link> */}
-                  </Grid>
-                  <Grid item>
-                    <Link
-                      href='#'
-                      variant='body2'
-                      className={classes.footerLinks}
-                    >
-                      Forgot Password?
-                    </Link>
-                  </Grid>
+                <Grid container justify={'center'}>
+                  <Link
+                    to={
+                      redirect ? `/register?redirect=${redirect}` : '/register'
+                    }
+                  >
+                    Зареєструватися
+                  </Link>
                 </Grid>
               </Box>
             </form>

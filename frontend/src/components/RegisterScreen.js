@@ -51,7 +51,6 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    // backgroundColor: 'black',
     borderRadius: '25px',
     height: '50px',
     width: '150px',
@@ -70,12 +69,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const theme = createMuiTheme({
-  // palette: {
-  //   primary: { 500: '#337ab7' },
-  // },
-});
-
 export default function RegisterScreen({ location, history }) {
   const [name, setName] = useState(' ');
   const [email, setEmail] = useState(' ');
@@ -83,13 +76,9 @@ export default function RegisterScreen({ location, history }) {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState(null);
 
-  // console.log('email: ', email);
-  // console.log('password: ', password);
-
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
-  // console.log(userLogin.error);
   const { loading, error, userInfo } = userLogin;
 
   const redirect = location.search ? location.search.split('=')[1] : '/';
@@ -113,19 +102,12 @@ export default function RegisterScreen({ location, history }) {
 
   return (
     <Card className={classes.root}>
-      {/* <CardMedia
-        component='img'
-        alt='Contemplative Reptile'
-        height='160'
-        image={starsky}
-        title='Contemplative Reptile'
-      /> */}
       <CardContent>
         <Container component='main' maxWidth='xs'>
           <CssBaseline />
           <div className={classes.paper}>
             <form className={classes.form} onSubmit={submitHandler}>
-              <ThemeProvider theme={theme}>
+              <ThemeProvider>
                 <TextField
                   variant='outlined'
                   margin='normal'
@@ -165,12 +147,6 @@ export default function RegisterScreen({ location, history }) {
                   id='confirmPassword'
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
-                {/* <Box mt={2}>
-                  <FormControlLabel
-                    control={<Checkbox value='remember' color='primary' />}
-                    label='Remember me'
-                  />
-                </Box> */}
               </ThemeProvider>
               <Box style={{ textAlign: 'center' }}>
                 {error && <Alert severity='error'>{error}</Alert>}
@@ -185,29 +161,12 @@ export default function RegisterScreen({ location, history }) {
                 </Button>
               </Box>
               <Box mt={2}>
-                <Grid container justifyContent={'center'}>
-                  <Grid item xs>
-                    {/* <Link
-                      href='#'
-                      variant='body2'
-                      className={classes.footerLinks}
-                    > */}
-                    <Link
-                      to={redirect ? `/login?redirect=${redirect}` : '/login'}
-                    >
-                      Увійти
-                    </Link>
-                    {/* </Link> */}
-                  </Grid>
-                  {/* <Grid item>
-                    <Link
-                      href='#'
-                      variant='body2'
-                      className={classes.footerLinks}
-                    >
-                      Forgot Password?
-                    </Link>
-                  </Grid> */}
+                <Grid container justify={'center'}>
+                  <Link
+                    to={redirect ? `/login?redirect=${redirect}` : '/login'}
+                  >
+                    Увійти
+                  </Link>
                 </Grid>
               </Box>
             </form>
